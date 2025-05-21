@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JH Engineering and Project Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 20px;
+            color: #0d47a1;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #0d47a1, #1976d2 );
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+        }
+        
+        .btn:hover {
+            background: linear-gradient(135deg, #1976d2, #0d47a1);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(25, 118, 210, 0.4);
+        }
+        
+        /* Cabeçalho */
+        header {
+            background: linear-gradient(135deg, #0d47a1, #1976d2);
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            right: -50%;
+            bottom: -50%;
+            background: linear-gradient(45deg, 
+                transparent 20%, 
+                rgba(255, 152, 0, 0.1) 25%, 
+                transparent 30%,
+                transparent 70%, 
+                rgba(255, 152, 0, 0.2) 75%, 
+                transparent 80%
+            );
+            background-size: 200% 200%;
+            animation: metallic-shine 8s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        @keyframes metallic-shine {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 200% 200%;
+            }
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icons {
+            display: flex;
+            margin-right: 15px;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(255, 255, 255, 0.8) 45%, 
+                transparent 60%
+            );
+            transform: rotate(45deg);
+            animation: icon-shine 3s infinite;
+        }
+        
+        @keyframes icon-shine {
+            0% {
+                left: -100%;
+                top: -100%;
+            }
+            100% {
+                left: 100%;
+                top: 100%;
+            }
+        }
+        
+        .logo-icon i {
+            color: #0d47a1;
+            font-size: 20px;
+            z-index: 1;
+        }
+        
+        .logo-text h1 {
+            font-size: 24px;
+            margin-bottom: 0;
+            color: white;
+        }
+        
+        .logo-text p {
+            font-size: 12px;
+            margin-bottom: 0;
+            opacity: 0.9;
+        }
+        
+        .certification-badge {
+            display: inline-block;
+            background-color: rgba(255, 152, 0, 0.2);
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin-top: 5px;
+            border: 1px solid rgba(255, 152, 0, 0.5);
+            font-size: 11px;
+        }
+        
+        .certification-badge i {
+            margin-right: 5px;
+            color: #ff9800;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: #ff9800;
+            bottom: -5px;
+            left: 0;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0d47a1, #1976d2);
+            color: white;
+            padding: 150px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(13, 71, 161, 0.9), rgba(25, 118, 210, 0.9));
+            z-index: 1;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            right: -50%;
+            bottom: -50%;
+            background: linear-gradient(45deg, 
+                transparent 20%, 
+                rgba(255, 152, 0, 0.1) 25%, 
+                transparent 30%,
+                transparent 70%, 
+                rgba(255, 152, 0, 0.2) 75%, 
+                transparent 80%
+            );
+            background-size: 200% 200%;
+            animation: metallic-shine 8s linear infinite;
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+        }
+        
+        .hero-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        /* Sobre Section */
+        .about {
+            background-color: white;
+            position: relative;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-img {
+            flex: 1;
+            position: relative;
+        }
+        
+        .about-img img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .about-img::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #ff9800;
+            top: 15px;
+            left: 15px;
+            border-radius: 10px;
+            z-index: 0;
+            opacity: 0.3;
+            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.2);
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h2 {
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .about-text h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background-color: #ff9800;
+            bottom: 0;
+            left: 0;
+            box-shadow: 0 0 8px rgba(255, 152, 0, 0.5);
+        }
+        
+        .certification {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 20px;
+            border-left: 4px solid #ff9800;
+            margin: 25px 0;
+            border-radius: 0 5px 5px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .certification::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Harvard_shield_wreath.svg/1200px-Harvard_shield_wreath.svg.png' );
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.1;
+        }
+        
+        .certification h3 {
+            color: #0d47a1;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .certification h3::before {
+            content: '🎓';
+            margin-right: 10px;
+            font-size: 24px;
+        }
+        
+        /* Serviços Section */
+        .services {
+            background-color: #f5f5f5;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .services::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 152, 0, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .services-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            height: 120px;
+            background: linear-gradient(135deg, #0d47a1, #1976d2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-icon::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(255, 255, 255, 0.2) 45%, 
+                transparent 60%
+            );
+            transform: rotate(45deg);
+            animation: service-shine 5s infinite;
+        }
+        
+        @keyframes service-shine {
+            0% {
+                left: -100%;
+                top: -100%;
+            }
+            100% {
+                left: 100%;
+                top: 100%;
+            }
+        }
+        
+        .service-icon i {
+            font-size: 50px;
+            color: white;
+            z-index: 1;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .service-content h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: #0d47a1;
+        }
+        
+        .ai-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(255, 152, 0, 0.3);
+            display: flex;
+            align-items: center;
+            width: fit-content;
+        }
+        
+        .ai-badge::before {
+            content: '🤖';
+            margin-right: 5px;
+            font-size: 14px;
+        }
+        
+        /* Indústrias Section */
+        .industries {
+            background-color: white;
+            position: relative;
+        }
+        
+        .industries::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(13, 71, 161, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .industries-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .industries-tabs {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .industry-tab {
+            padding: 10px 20px;
+            background-color: #f5f5f5;
+            border-radius: 30px;
+            margin: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .industry-tab.active {
+            background: linear-gradient(135deg, #0d47a1, #1976d2);
+            color: white;
+            box-shadow: 0 5px 15px rgba(13, 71, 161, 0.3);
+        }
+        
+        .industry-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .industry-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .industry-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .industry-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0d47a1, #1976d2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            box-shadow: 0 5px 15px rgba(13, 71, 161, 0.2);
+        }
+        
+        .industry-icon i {
+            font-size: 30px;
+            color: white;
+        }
+        
+        .industry-companies {
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .company-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .company-item:last-child {
+            border-bottom: none;
+        }
+        
+        .company-item::before {
+            content: '•';
+            color: #0d47a1;
+            font-size: 20px;
+            margin-right: 10px;
+        }
+        
+        /* Contato Section */
+        .contact {
+            background-color: #f5f5f5;
+            position: relative;
+        }
+        
+        .contact-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .contact-item {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            width: 300px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #0d47a1, #1976d2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 15px rgba(13, 71, 161, 0.2);
+        }
+        
+        .contact-icon i {
+            font-size: 30px;
+            color: white;
+        }
+        
+        .contact-item h3 {
+            margin-bottom: 10px;
+        }
+        
+        .contact-item p {
+            color: #666;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #0d47a1, #1976d2);
+            color: white;
+            padding: 40px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            right: -50%;
+            bottom: -50%;
+            background: linear-gradient(45deg, 
+                transparent 20%, 
+                rgba(255, 152, 0, 0.1) 25%, 
+                transparent 30%,
+                transparent 70%, 
+                rgba(255, 152, 0, 0.2) 75%, 
+                transparent 80%
+            );
+            background-size: 200% 200%;
+            animation: metallic-shine 8s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .footer-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+        
+        .footer-logo {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-logo h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .footer-links {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-links h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links ul li a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links ul li a:hover {
+            color: #ff9800;
+        }
+        
+        .footer-contact {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-contact h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .footer-contact p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-contact p i {
+            margin-right: 10px;
+            color: #ff9800;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-img {
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 36px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, #0d47a1, #1976d2);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            section {
+                padding: 40px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icons">
+                        <div class="logo-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="logo-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="logo-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                    </div>
+                    <div class="logo-text">
+                        <h1>JH Engineering</h1>
+                        <div class="certification-badge">
+                            <i class="fas fa-award"></i> Harvard Project Management Certified
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="mobile-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <nav>
+                    <ul>
+                        <li><a href="#hero">Início</a></li>
+                        <li><a href="#about">Sobre</a></li>
+                        <li><a href="#services">Serviços</a></li>
+                        <li><a href="#industries">Indústrias</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Soluções de Engenharia e Gestão de Projetos</h1>
+                <p class="hero-subtitle">Transformando desafios em oportunidades com expertise técnica, visão estratégica e tecnologia de ponta.</p>
+                <a href="#contact" class="btn">Entre em Contato</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="https://ueopdtrx.manus.space/images/profile.jpg" alt="John Herles - JH Engineering">
+                </div>
+                <div class="about-text">
+                    <h2>Sobre a JH Engineering</h2>
+                    <p>A JH Engineering and Project Management é uma consultoria especializada em desenvolvimento de negócios, oferecendo soluções personalizadas para empresas de diversos setores. Com uma abordagem estratégica e inovadora, ajudamos nossos clientes a alcançarem seus objetivos de crescimento, eficiência operacional e expansão de mercado.</p>
+                    
+                    <div class="certification">
+                        <h3>Certificação Harvard em Project Management</h3>
+                        <p>Nossa equipe é liderada por profissionais certificados pela Universidade de Harvard em Gestão de Projetos (2024 ), garantindo a aplicação das melhores práticas e metodologias internacionais em todos os nossos serviços. Esta certificação de prestígio nos permite oferecer soluções de classe mundial para desafios complexos de negócios.</p>
+                    </div>
+                    
+                    <p>Com experiência em setores como mineração, petroquímica, siderurgia, agronegócio, celulose e comércio, oferecemos uma visão abrangente e soluções adaptadas às necessidades específicas de cada cliente, combinando conhecimento técnico com as mais recentes inovações tecnológicas.</p>
+                    
+                    <a href="#services" class="btn">Conheça Nossos Serviços</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="services-content">
+                <h2>Nossos Serviços</h2>
+                <p>Oferecemos uma gama completa de serviços de consultoria em desenvolvimento de negócios, com foco em resultados mensuráveis e sustentáveis, potencializados por tecnologias de Inteligência Artificial para maior agilidade e produtividade.</p>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="service-content">
+                            <span class="ai-badge">Potencializado por IA</span>
+                            <h3>Mobilização de Negócios</h3>
+                            <p>Estruturação e implementação de novos negócios ou contratos, com planejamento estratégico e operacional para garantir um início eficiente e bem-sucedido. Utilizamos inteligência artificial para análise de mercado e previsão de cenários, garantindo maior agilidade e precisão nas tomadas de decisão.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <div class="service-content">
+                            <span class="ai-badge">Potencializado por IA</span>
+                            <h3>Organização Financeira</h3>
+                            <p>Estruturação e otimização de processos financeiros, com foco em controle de custos, gestão de fluxo de caixa e maximização de resultados. Nossa abordagem com IA permite identificar padrões e oportunidades de economia que passariam despercebidos em análises tradicionais, aumentando significativamente a produtividade.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="service-content">
+                            <span class="ai-badge">Potencializado por IA</span>
+                            <h3>Planejamento Financeiro</h3>
+                            <p>Desenvolvimento de planos financeiros estratégicos, com projeções, análise de investimentos e estratégias para crescimento sustentável. Utilizamos algoritmos de IA para simular múltiplos cenários e identificar a melhor rota para o sucesso financeiro do seu negócio, com velocidade e precisão incomparáveis.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="service-content">
+                            <span class="ai-badge">Potencializado por IA</span>
+                            <h3>Consultoria Empresarial</h3>
+                            <p>Assessoria estratégica para tomada de decisões, resolução de problemas complexos e identificação de oportunidades de crescimento. Nossa consultoria é potencializada por ferramentas de IA que analisam grandes volumes de dados para gerar insights valiosos com agilidade e precisão, transformando dados em estratégias acionáveis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Indústrias Section -->
+    <section class="industries" id="industries">
+        <div class="container">
+            <div class="industries-content">
+                <h2>Indústrias Atendidas</h2>
+                <p>Temos experiência em diversos setores, oferecendo soluções personalizadas para cada segmento.</p>
+                
+                <div class="industries-tabs">
+                    <div class="industry-tab active" data-industry="mining">Mineração</div>
+                    <div class="industry-tab" data-industry="petrochemical">Petroquímica</div>
+                    <div class="industry-tab" data-industry="steel">Siderurgia</div>
+                    <div class="industry-tab" data-industry="agribusiness">Agronegócio</div>
+                    <div class="industry-tab" data-industry="cellulose">Celulose</div>
+                    <div class="industry-tab" data-industry="commerce">Comércio</div>
+                </div>
+                
+                <div class="industry-content active" id="mining">
+                    <div class="industry-header">
+                        <div class="industry-icon">
+                            <i class="fas fa-hard-hat"></i>
+                        </div>
+                        <h3>Mineração</h3>
+                    </div>
+                    <p>Oferecemos soluções especializadas para o setor de mineração, com foco em eficiência operacional, gestão de projetos e otimização de processos. Nossa experiência neste setor nos permite entender os desafios específicos e oferecer soluções personalizadas.</p>
+                    <div class="industry-companies">
+                        <h4>Empresas Atendidas:</h4>
+                        <div class="company-item">Vale do Rio Doce</div>
+                    </div>
+                </div>
+                
+                <div class="industry-content" id="petrochemical">
+                    <div class="industry-header">
+                        <div class="industry-icon">
+                            <i class="fas fa-industry"></i>
+                        </div>
+                        <h3>Petroquímica</h3>
+                    </div>
+                    <p>No setor petroquímico, oferecemos consultoria especializada em gestão de projetos, otimização de processos e implementação de novas tecnologias. Nossa abordagem integrada ajuda as empresas a aumentarem sua eficiência e competitividade.</p>
+                    <div class="industry-companies">
+                        <h4>Empresas Atendidas:</h4>
+                        <div class="company-item">Dow Química Aratu</div>
+                        <div class="company-item">Dow Ilha de Matarandiba</div>
+                        <div class="company-item">Unigel Candeias</div>
+                        <div class="company-item">Unigel Camaçari</div>
+                        <div class="company-item">Petrobras REDUC</div>
+                        <div class="company-item">Petrobras RPBC</div>
+                        <div class="company-item">Petrobras Recife</div>
+                        <div class="company-item">Deten Química</div>
+                    </div>
+                </div>
+                
+                <div class="industry-content" id="steel">
+                    <div class="industry-header">
+                        <div class="industry-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <h3>Siderurgia</h3>
+                    </div>
+                    <p>Para o setor siderúrgico, desenvolvemos soluções que visam aumentar a produtividade, reduzir custos e melhorar a qualidade dos produtos. Nossa experiência neste setor nos permite oferecer consultoria especializada em todas as etapas do processo produtivo.</p>
+                    <div class="industry-companies">
+                        <h4>Empresas Atendidas:</h4>
+                        <div class="company-item">ArcelorMittal Tubarão</div>
+                        <div class="company-item">Usiminas MG</div>
+                        <div class="company-item">Aperan</div>
+                    </div>
+                </div>
+                
+                <div class="industry-content" id="agribusiness">
+                    <div class="industry-header">
+                        <div class="industry-icon">
+                            <i class="fas fa-tractor"></i>
+                        </div>
+                        <h3>Agronegócio</h3>
+                    </div>
+                    <p>No agronegócio, oferecemos consultoria para otimização de processos, gestão de projetos e implementação de novas tecnologias. Nosso objetivo é ajudar as empresas a aumentarem sua produtividade e competitividade no mercado global.</p>
+                    <div class="industry-companies">
+                        <h4>Empresas Atendidas:</h4>
+                        <div class="company-item">SLC Agrícola</div>
+                        <div class="company-item">Kepler Weber</div>
+                    </div>
+                </div>
+                
+                <div class="industry-content" id="cellulose">
+                    <div class="industry-header">
+                        <div class="industry-icon">
+                            <i class="fas fa-tree"></i>
+                        </div>
+                        <h3>Celulose</h3>
+                    </div>
+                    <p>Para o setor de celulose, desenvolvemos soluções que visam aumentar a eficiência operacional, reduzir custos e melhorar a qualidade dos produtos. Nossa abordagem integrada ajuda as empresas a alcançarem seus objetivos de forma sustentável.</p>
+                    <div class="industry-companies">
+                        <h4>Empresas Atendidas:</h4>
+                        <div class="company-item">Cenibra</div>
+                    </div>
+                </div>
+                
+                <div class="industry-content" id="commerce">
+                    <div class="industry-header">
+                        <div class="industry-icon">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <h3>Comércio</h3>
+                    </div>
+                    <p>No setor de comércio, oferecemos consultoria para otimização de processos, gestão financeira e estratégias de crescimento. Nosso objetivo é ajudar as empresas a aumentarem suas vendas, reduzirem custos e melhorarem sua posição no mercado.</p>
+                    <div class="industry-companies">
+                        <h4>Empresas Atendidas:</h4>
+                        <div class="company-item">JH Distribuidora</div>
+                        <div class="company-item">Jherles Joias</div>
+                        <div class="company-item">Somm Wine Distribuidora de Bebidas</div>
+                        <div class="company-item">Xiru Paint</div>
+                        <div class="company-item">Da Rosa Construction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2>Entre em Contato</h2>
+                <p>Estamos prontos para ajudar sua empresa a alcançar novos patamares de sucesso.</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>E-mail</h3>
+                        <p>jhengineeringprojects@hotmail.com</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Telefone</h3>
+                        <p>+55 71 99913-8831</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Endereço</h3>
+                        <p>Rua Doutor Francisco Antonio de Almeida, 244, Praia de Carapebus, Serra - ES</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>JH Engineering</h3>
+                    <p>Soluções de Engenharia e Gestão de Projetos com excelência e inovação.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#hero">Início</a></li>
+                        <li><a href="#about">Sobre</a></li>
+                        <li><a href="#services">Serviços</a></li>
+                        <li><a href="#industries">Indústrias</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contato</h3>
+                    <p><i class="fas fa-envelope"></i> jhengineeringprojects@hotmail.com</p>
+                    <p><i class="fas fa-phone"></i> +55 71 99913-8831</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Rua Doutor Francisco Antonio de Almeida, 244, Praia de Carapebus, Serra - ES</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 JH Engineering and Project Management. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menu Mobile
+            const mobileToggle = document.querySelector('.mobile-toggle');
+            const navMenu = document.querySelector('nav ul');
+            
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                });
+            }
+            
+            // Navegação Suave
+            const navLinks = document.querySelectorAll('nav ul li a, .footer-links ul li a, .btn');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Fechar menu mobile após clique
+                        if (navMenu.classList.contains('active')) {
+                            navMenu.classList.remove('active');
+                        }
+                    }
+                });
+            });
+            
+            // Tabs de indústrias
+            const industryTabs = document.querySelectorAll('.industry-tab');
+            const industryContents = document.querySelectorAll('.industry-content');
+            
+            industryTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const industry = this.getAttribute('data-industry');
+                    
+                    industryTabs.forEach(t => t.classList.remove('active'));
+                    industryContents.forEach(c => c.classList.remove('active'));
+                    
+                    this.classList.add('active');
+                    document.getElementById(industry).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
